@@ -93,6 +93,7 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
 .search-close-btn{border-radius:50%!important;background:none!important;min-width:var(--tap)!important;min-height:var(--tap)!important}
 
 .hero{position:relative;min-height:100vh;min-height:100dvh;display:flex;align-items:flex-end;justify-content:center;text-align:center;overflow:hidden;padding-bottom:80px}
+@media(max-width:900px){.hero{min-height:78vh;min-height:78dvh;padding-bottom:50px}}
 .hero-carousel-bg{position:absolute;inset:0;z-index:0;background:linear-gradient(135deg,#0d0610 0%,#0a0a14 30%,#0e0a08 60%,#080d10 100%)}
 .hero-carousel-bg::before{content:"";position:absolute;inset:0;background:
   radial-gradient(ellipse at 20% 30%,rgba(160,80,255,.45) 0%,transparent 50%),
@@ -186,6 +187,9 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
 .filter-count{font-size:12px;color:var(--muted);margin-top:12px;letter-spacing:.1em}
 
 .products{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.products-scroll{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px}
+.products-scroll::-webkit-scrollbar{display:none}
+.products-scroll .product{flex:0 0 auto;width:42%;scroll-snap-align:start}
 .product{background:var(--bg-3);border:1px solid var(--line-soft);border-radius:var(--radius);transition:.35s var(--ease);overflow:hidden}
 .product:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 24px 48px -24px rgba(212,175,55,.25)}
 .product-media{position:relative;aspect-ratio:3/4;overflow:hidden;background:#0a0a0a}
@@ -399,9 +403,10 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
   /* shop subnav */
   .shop-subnav{-webkit-overflow-scrolling:touch}
 }
-@media (max-width:600px){
-  /* products-5 → 2 col */
-  .products.products-5{grid-template-columns:repeat(2,1fr)}
+@media (max-width:900px){
+  .products.products-5{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px}
+  .products.products-5::-webkit-scrollbar{display:none}
+  .products.products-5 .product{flex:0 0 auto;width:42%;scroll-snap-align:start}
 }
 @media (max-width:520px){
   /* products → 1 col */
@@ -719,7 +724,7 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
         <a href="#shop" class="btn btn-ghost home-see-all" onclick="setTimeout(()=>activateShopTab('women'),80)">See All Women <i class="fa-solid fa-arrow-right"></i></a>
       </div>
     </div>
-    <div class="products" id="iconicWomen"></div>
+    <div class="products" id="iconicWomen" data-scrollable="true"></div>
   </div>
 </section>
 
@@ -1021,6 +1026,7 @@ function renderCategoryLists(){
 renderIconic();
 renderCategoryLists();
 observeReveal();
+setTimeout(initAutoScrollRows,200);
 
 /* ===== Hash router ===== */
 const VALID_PAGES = ["home","shop"];
@@ -1175,6 +1181,30 @@ document.addEventListener("keydown",e=>{
   if(e.key==="Escape"){search.classList.remove("open");modal.classList.remove("open");closeCart();}
 });
 
+function initAutoScrollRows(){
+  if(window.innerWidth>900) return;
+  const rows = $$('.products[data-scrollable], .products.products-5');
+  rows.forEach(row=>{
+    let dir=1, paused=false, raf;
+    row.addEventListener('pointerdown',()=>{paused=true;});
+    row.addEventListener('pointerup',()=>{setTimeout(()=>paused=false,2000);});
+    row.addEventListener('touchstart',()=>{paused=true;},{passive:true});
+    row.addEventListener('touchend',()=>{setTimeout(()=>paused=false,2000);});
+    function step(){
+      if(!paused && row.isConnected){
+        const maxScroll = row.scrollWidth - row.clientWidth;
+        if(maxScroll>0){
+          if(row.scrollLeft>=maxScroll-2) dir=-1;
+          if(row.scrollLeft<=2) dir=1;
+          row.scrollLeft += dir*0.6;
+        }
+      }
+      raf=requestAnimationFrame(step);
+    }
+    raf=requestAnimationFrame(step);
+  });
+}
+
 function observeReveal(){
   const io=new IntersectionObserver(entries=>{entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target);}})},{threshold:.1});
   $$(".reveal, .section-head, .collection-card, .story-images, .story-text, .contact-form, .contact-info").forEach(el=>{
@@ -1279,6 +1309,7 @@ function renderShopBody(tab){
           <div class="products products-5">${items.map(productCard).join("")}</div>
         </div>`;
     }).join("");
+    setTimeout(initAutoScrollRows,200);
 
     return `
       <div class="shop-gender-block">
