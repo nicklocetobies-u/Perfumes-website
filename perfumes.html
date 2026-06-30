@@ -563,37 +563,26 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
 .shop-cat-see-all:hover{background:var(--gold);color:#000}
 @media(max-width:768px){.shop-subnav{padding:0 12px}.shop-tab{padding:14px 12px;font-size:10px}}
 
-/* ===== Unified mobile product rows (home rails + shop categories) ===== */
+/* ===== Unified mobile product grid (home rails + shop categories) ===== */
 @media (max-width:900px){
   .products.products-5,
   .products[data-scrollable]{
-    display:flex;
-    gap:14px;
-    overflow-x:auto;
-    scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch;
-    scrollbar-width:none;
-    padding:4px 4px 12px;
-  }
-  .products.products-5::-webkit-scrollbar,
-  .products[data-scrollable]::-webkit-scrollbar{display:none}
-  .products.products-5 .product,
-  .products[data-scrollable] .product{
-    flex:0 0 auto;
-    width:66%;
-    max-width:270px;
-    scroll-snap-align:start;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
   }
   .products.products-5 .product-media,
   .products[data-scrollable] .product-media{aspect-ratio:3/4}
+  .products.products-5 .product-body,
+  .products[data-scrollable] .product-body{padding:14px}
+  .products.products-5 .product-name,
+  .products[data-scrollable] .product-name{font-size:17px}
+  .products.products-5 .product-desc,
+  .products[data-scrollable] .product-desc{-webkit-line-clamp:2}
 }
-@media (max-width:600px){
-  .products.products-5 .product,
-  .products[data-scrollable] .product{width:74%}
-}
-@media (max-width:400px){
-  .products.products-5 .product,
-  .products[data-scrollable] .product{width:84%}
+@media (max-width:360px){
+  .products.products-5,
+  .products[data-scrollable]{grid-template-columns:1fr}
 }
 /* ===== Mobile app polish (≤900px) — hero, shop, product modal ===== */
 @media(max-width:900px){
@@ -655,24 +644,6 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
   .shop-gender-head{padding:20px 0 6px}
   .shop-cat-head{align-items:flex-start;flex-direction:column;gap:10px}
   .shop-cat-see-all{align-self:flex-start;padding:8px 14px;font-size:10px}
-  .page[data-page="shop"] .products.products-5,
-  #shopBody .products.products-5{
-    display:grid;grid-template-columns:repeat(2,1fr);
-    gap:12px;overflow:visible;scroll-snap-type:none;
-    padding:0;
-  }
-  .page[data-page="shop"] .products.products-5 .product,
-  #shopBody .products.products-5 .product{
-    flex:none;width:auto;max-width:none;scroll-snap-align:none;
-  }
-  .page[data-page="shop"] .products.products-5 .product-media,
-  #shopBody .products.products-5 .product-media{aspect-ratio:3/4}
-  .page[data-page="shop"] .products.products-5 .product-body,
-  #shopBody .products.products-5 .product-body{padding:14px}
-  .page[data-page="shop"] .products.products-5 .product-name,
-  #shopBody .products.products-5 .product-name{font-size:17px}
-  .page[data-page="shop"] .products.products-5 .product-desc,
-  #shopBody .products.products-5 .product-desc{-webkit-line-clamp:2}
   /* — Product cards & quick view — */
   .product:hover{transform:none;box-shadow:none}
   .product-quick button{font-size:9px;padding:10px;letter-spacing:.12em}
@@ -1157,7 +1128,6 @@ function renderCategoryLists(){
 renderIconic();
 renderCategoryLists();
 observeReveal();
-setTimeout(initAutoScrollRows,200);
 
 /* ===== Hash router ===== */
 const VALID_PAGES = ["home","shop"];
@@ -1312,29 +1282,6 @@ document.addEventListener("keydown",e=>{
   if(e.key==="Escape"){search.classList.remove("open");modal.classList.remove("open");closeCart();}
 });
 
-function initAutoScrollRows(){
-  if(window.innerWidth>900) return;
-  const rows = $$('.products[data-scrollable]');
-  rows.forEach(row=>{
-    let dir=1, paused=false, raf;
-    row.addEventListener('pointerdown',()=>{paused=true;});
-    row.addEventListener('pointerup',()=>{setTimeout(()=>paused=false,2000);});
-    row.addEventListener('touchstart',()=>{paused=true;},{passive:true});
-    row.addEventListener('touchend',()=>{setTimeout(()=>paused=false,2000);});
-    function step(){
-      if(!paused && row.isConnected){
-        const maxScroll = row.scrollWidth - row.clientWidth;
-        if(maxScroll>0){
-          if(row.scrollLeft>=maxScroll-2) dir=-1;
-          if(row.scrollLeft<=2) dir=1;
-          row.scrollLeft += dir*0.6;
-        }
-      }
-      raf=requestAnimationFrame(step);
-    }
-    raf=requestAnimationFrame(step);
-  });
-}
 
 function observeReveal(){
   const io=new IntersectionObserver(entries=>{entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target);}})},{threshold:.1});
@@ -1422,7 +1369,6 @@ function renderShopBody(tab){
     // single sub-category — flat grid, no category blocks
     const items = PRODUCTS.filter(p => p.sub === tab);
     body.innerHTML = `<div class="products products-5">${items.map(productCard).join("")}</div>`;
-    setTimeout(initAutoScrollRows,200);
     return;
   }
 
@@ -1452,7 +1398,6 @@ function renderShopBody(tab){
   }).join("");
 
   observeReveal();
-  setTimeout(initAutoScrollRows,200);
 }
 
 function activateShopTab(tabVal){
