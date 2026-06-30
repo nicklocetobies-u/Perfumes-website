@@ -58,9 +58,6 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
 .icon-btn{position:relative;display:inline-flex;align-items:center;gap:8px;min-width:var(--tap);min-height:var(--tap);justify-content:center;border-radius:50%;border:1px solid var(--line-soft);transition:all .3s var(--ease);color:#e8e3d6;font-size:15px}
 .icon-btn:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
 .cart-count{position:absolute;top:2px;right:2px;background:var(--gold);color:#000;font-size:10px;font-weight:700;min-width:18px;height:18px;border-radius:50%;display:grid;place-items:center;padding:0 4px}
-.whatsapp-nav{width:auto;padding:0 16px;border-radius:999px;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
-.whatsapp-nav .whatsapp-label{display:inline}
-.whatsapp-nav:hover{background:#25D366;color:#fff;border-color:#25D366}
 
 .nav-burger{display:none;flex-direction:column;gap:5px;width:var(--tap);height:var(--tap);align-items:center;justify-content:center}
 .nav-burger span{width:22px;height:2px;background:var(--gold);transition:.3s;border-radius:2px}
@@ -355,16 +352,15 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
 }
 @media (max-width:900px){
   /* carousel */
-  .hero-carousel-bg .inner{--w:70px;--h:100px;top:22%;animation-duration:9s}
+  .hero-carousel-bg .inner{--w:64px;--h:80px;top:24%;animation-duration:9s}
   /* nav */
   .nav-inner{padding:10px 12px;gap:6px}
   .nav-center,.nav-divider{display:none}
   .nav-burger{display:flex;flex-shrink:0;width:38px;height:38px}
-  .brand{align-items:center;text-align:center;flex:1;min-width:0}
+  .brand{align-items:flex-start;text-align:left;flex:1;min-width:0}
   .brand-sub{display:none}
   .brand-mark{font-size:20px}
   .brand-name{font-size:11px;letter-spacing:.22em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .whatsapp-label{display:none}.whatsapp-nav{width:38px;height:38px;min-width:38px;min-height:38px;padding:0;border-radius:50%}
   .icon-btn{min-width:38px;min-height:38px;width:38px;height:38px}
   .nav-tools{gap:4px;flex-shrink:0}
   .cart-count{font-size:9px;min-width:16px;height:16px}
@@ -579,10 +575,8 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
 
 <header class="nav" id="nav">
   <div class="nav-inner">
-    <button class="nav-burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
-
     <a href="#" class="brand" aria-label="Maison Noir home">
-      <span class="brand-mark">Y<span class="amp">·</span>BC</span>
+      <span class="brand-mark">Y<span class="amp">·</span>B</span>
       <span class="brand-name">YOUR BRAND</span>
       <span class="brand-sub">YOUR TAGLINE — CITY</span>
     </a>
@@ -599,15 +593,11 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
 
     <div class="nav-tools">
       <button class="icon-btn" id="searchBtn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
-      <span class="nav-divider" aria-hidden="true"></span>
-      <a class="icon-btn whatsapp-nav" href="https://wa.me/YOUR_NUMBER?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20your%20collection." target="_blank" rel="noopener" aria-label="WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-        <span class="whatsapp-label">WhatsApp</span>
-      </a>
       <button class="icon-btn cart-btn" id="cartBtn" aria-label="Shopping cart">
         <i class="fa-solid fa-bag-shopping"></i>
         <span class="cart-count" id="cartCount">0</span>
       </button>
+      <button class="nav-burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
   <div class="mobile-drawer" id="drawer" aria-hidden="true">
@@ -616,7 +606,6 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
     <a href="#story">Atelier</a>
     <a href="#reviews">Journal</a>
     <a href="#contact">Contact</a>
-    <a class="whatsapp-mobile" href="https://wa.me/YOUR_NUMBER" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
   </div>
 </header>
 
