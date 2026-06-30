@@ -563,7 +563,7 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
 .shop-cat-see-all:hover{background:var(--gold);color:#000}
 @media(max-width:768px){.shop-subnav{padding:0 12px}.shop-tab{padding:14px 12px;font-size:10px}}
 
-/* ===== Consolidated mobile product rows (home rails + shop categories) ===== */
+/* ===== Unified mobile product rows (home rails + shop categories) ===== */
 @media (max-width:900px){
   .products.products-5,
   .products[data-scrollable]{
@@ -573,23 +573,27 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
     scroll-snap-type:x mandatory;
     -webkit-overflow-scrolling:touch;
     scrollbar-width:none;
-    padding:2px 2px 10px;
+    padding:4px 4px 12px;
   }
   .products.products-5::-webkit-scrollbar,
   .products[data-scrollable]::-webkit-scrollbar{display:none}
   .products.products-5 .product,
   .products[data-scrollable] .product{
     flex:0 0 auto;
-    width:72%;
-    max-width:300px;
+    width:66%;
+    max-width:270px;
     scroll-snap-align:start;
   }
   .products.products-5 .product-media,
   .products[data-scrollable] .product-media{aspect-ratio:3/4}
 }
-@media (max-width:520px){
+@media (max-width:600px){
   .products.products-5 .product,
-  .products[data-scrollable] .product{width:82%}
+  .products[data-scrollable] .product{width:74%}
+}
+@media (max-width:400px){
+  .products.products-5 .product,
+  .products[data-scrollable] .product{width:84%}
 }
 /* ===== Mobile app polish (≤900px) — hero, shop, product modal ===== */
 @media(max-width:900px){
@@ -604,9 +608,9 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
   .hero-overlay{
     background:radial-gradient(ellipse at center,rgba(0,0,0,.15) 0%,rgba(0,0,0,.55) 55%),linear-gradient(180deg,rgba(11,11,11,.25) 0%,rgba(11,11,11,.72) 48%,rgba(11,11,11,.97) 100%);
   }
-  .hero-carousel-bg .inner{--w:56px;--h:84px;top:28%;animation-duration:10s}
+  .hero-carousel-bg .inner{--w:62px;--h:150px;top:18%;animation-duration:11s}
   .hero-content{
-    padding:min(36vh,260px) 16px 0;
+    padding:min(42vh,320px) 16px 0;
     margin-top:auto;
     z-index:4;
   }
@@ -629,7 +633,7 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
     width:calc(100% + 32px);
     scroll-padding-inline:16px;
   }
-  .products[data-scrollable] .product{width:78%;max-width:260px}
+
   /* — Shop page: hero first, sticky tabs, 2-col grid — */
   .page[data-page="shop"]{display:flex;flex-direction:column}
   .page[data-page="shop"] .shop-hero{order:1}
