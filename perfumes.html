@@ -181,6 +181,7 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
 .collection-body p{color:#d5d0c4;max-width:360px;font-size:14px;line-height:1.5}
 .collection-link{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold)}
 .collection-card:hover{border-color:var(--gold);box-shadow:0 20px 50px -20px rgba(212,175,55,.3)}
+.mobile-collection-banner{display:none}
 
 .filter-bar{margin-top:28px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;align-items:center}
 .filter{padding:10px 20px;min-height:var(--tap);border:1px solid var(--line);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#cfcabe;transition:.3s;border-radius:999px;background:transparent}
@@ -370,13 +371,21 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
   .cart-count{font-size:9px;min-width:16px;height:16px}
   /* sections */
   .section{padding:60px 16px}
-  .collection-grid{grid-template-columns:1fr 1fr;gap:10px}.collection-card{height:180px}
-  .collection-tag{font-size:8px;letter-spacing:.15em;padding:4px 8px;margin-bottom:6px}
-  .collection-body{left:12px;right:12px;bottom:12px}
-  .collection-body h3{font-size:20px;margin-bottom:4px}
-  .collection-body p{display:none}
-  .collection-link{margin-top:8px;font-size:9px}
+  #collections{display:none}
   .products{grid-template-columns:repeat(2,1fr);gap:14px}
+  .mobile-collection-banner{
+    display:block;position:relative;height:220px;overflow:hidden;
+    border:1px solid var(--line-soft);border-radius:var(--radius);
+    margin-bottom:14px;
+  }
+  .mobile-collection-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.75)}
+  .mobile-collection-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.85) 100%)}
+  .mobile-collection-body{position:absolute;left:16px;right:16px;bottom:14px;z-index:2}
+  .mobile-collection-tag{display:inline-block;font-size:9px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;padding:4px 10px;border:1px solid var(--gold);border-radius:4px;background:rgba(0,0,0,.4)}
+  .mobile-collection-body h3{font-family:var(--display);font-size:24px;line-height:1;color:#fff;margin:0}
+  .iconic-section{padding:16px 16px 32px}
+  .iconic-section .section-head{margin-bottom:10px}
+  .home-cat-header .section-title{display:none}
   /* story */
   .story-grid,.contact-grid{grid-template-columns:1fr;gap:32px}
   .story-images{height:340px}
@@ -667,7 +676,7 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
   }
 
   /* — Shop page: hero first, sticky tabs, 2-col grid — */
-  .page[data-page="shop"]{display:flex;flex-direction:column}
+  .page[data-page="shop"].active{display:flex;flex-direction:column}
   .page[data-page="shop"] .shop-hero{order:1}
   .page[data-page="shop"] .shop-subnav{
     order:2;top:var(--nav-h);
@@ -869,6 +878,14 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
 
 <section class="section dark-section no-gap" id="iconic-women">
   <div class="iconic-section">
+    <a href="#shop" class="mobile-collection-banner" onclick="setTimeout(()=>activateShopTab('women'),80)">
+      <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=1400&q=80" alt="Women's perfume collection" loading="lazy" />
+      <div class="mobile-collection-overlay"></div>
+      <div class="mobile-collection-body">
+        <span class="mobile-collection-tag">Collection</span>
+        <h3>Women's <em>Perfume</em></h3>
+      </div>
+    </a>
     <div class="section-head reveal">
       <div class="home-cat-header">
         <div>
@@ -883,6 +900,14 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
 
 <section class="section" id="iconic-men" style="padding-top:0">
   <div class="iconic-section">
+    <a href="#shop" class="mobile-collection-banner" onclick="setTimeout(()=>activateShopTab('men'),80)">
+      <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=1400&q=80" alt="Men's perfume collection" loading="lazy" />
+      <div class="mobile-collection-overlay"></div>
+      <div class="mobile-collection-body">
+        <span class="mobile-collection-tag">Collection</span>
+        <h3>Men's <em>Perfume</em></h3>
+      </div>
+    </a>
     <div class="section-head reveal">
       <div class="home-cat-header">
         <div>
