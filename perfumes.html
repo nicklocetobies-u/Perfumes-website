@@ -354,6 +354,7 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
   .hero-carousel-bg .inner{--w:160px;--h:240px;top:18%}
 }
 @media (max-width:900px){
+  #iconic-women{background:var(--bg)!important}
   /* carousel */
   .hero-carousel-bg .inner{--w:85px;--h:128px;top:20%}
   /* nav */
@@ -369,7 +370,12 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
   .cart-count{font-size:9px;min-width:16px;height:16px}
   /* sections */
   .section{padding:60px 16px}
-  .collection-grid{grid-template-columns:1fr}.collection-card{height:360px}
+  .collection-grid{grid-template-columns:1fr 1fr;gap:10px}.collection-card{height:180px}
+  .collection-tag{font-size:8px;letter-spacing:.15em;padding:4px 8px;margin-bottom:6px}
+  .collection-body{left:12px;right:12px;bottom:12px}
+  .collection-body h3{font-size:20px;margin-bottom:4px}
+  .collection-body p{display:none}
+  .collection-link{margin-top:8px;font-size:9px}
   .products{grid-template-columns:repeat(2,1fr);gap:14px}
   /* story */
   .story-grid,.contact-grid{grid-template-columns:1fr;gap:32px}
@@ -866,9 +872,7 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
     <div class="section-head reveal">
       <div class="home-cat-header">
         <div>
-          <span class="eyebrow">— Pour Elle</span>
-          <h2 class="section-title">Women's <em>Parfums</em></h2>
-          <p class="section-sub">Florals, ambers and silken musks for the modern muse.</p>
+          <h2 class="section-title" style="font-size:clamp(20px,5vw,32px)">Women's <em>Parfums</em></h2>
         </div>
         <a href="#shop" class="btn btn-ghost home-see-all" onclick="setTimeout(()=>activateShopTab('women'),80)">See All Women <i class="fa-solid fa-arrow-right"></i></a>
       </div>
@@ -882,9 +886,7 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
     <div class="section-head reveal">
       <div class="home-cat-header">
         <div>
-          <span class="eyebrow">— Pour Lui</span>
-          <h2 class="section-title">Men's <em>Parfums</em></h2>
-          <p class="section-sub">Smoked oud, leather and cedar for the modern gentleman.</p>
+          <h2 class="section-title" style="font-size:clamp(20px,5vw,32px)">Men's <em>Parfums</em></h2>
         </div>
         <a href="#shop" class="btn btn-ghost home-see-all" onclick="setTimeout(()=>activateShopTab('men'),80)">See All Men <i class="fa-solid fa-arrow-right"></i></a>
       </div>
