@@ -374,15 +374,15 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
   #collections{display:none}
   .products{grid-template-columns:repeat(2,1fr);gap:14px}
   .mobile-collection-banner{
-    display:block;position:relative;height:220px;overflow:hidden;
+    display:block;position:relative;aspect-ratio:16/9;overflow:hidden;
     border:1px solid var(--line-soft);border-radius:var(--radius);
-    margin-bottom:14px;
+    margin-bottom:16px;box-shadow:0 10px 28px -14px rgba(0,0,0,.55);
   }
-  .mobile-collection-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.75)}
-  .mobile-collection-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.85) 100%)}
-  .mobile-collection-body{position:absolute;left:16px;right:16px;bottom:14px;z-index:2}
-  .mobile-collection-tag{display:inline-block;font-size:9px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;padding:4px 10px;border:1px solid var(--gold);border-radius:4px;background:rgba(0,0,0,.4)}
-  .mobile-collection-body h3{font-family:var(--display);font-size:24px;line-height:1;color:#fff;margin:0}
+  .mobile-collection-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.7)}
+  .mobile-collection-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.08) 0%,transparent 38%,rgba(0,0,0,.9) 100%)}
+  .mobile-collection-body{position:absolute;left:18px;right:18px;bottom:16px;z-index:2}
+  .mobile-collection-tag{display:inline-block;font-size:9px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:8px;padding:5px 12px;border:1px solid var(--gold);border-radius:4px;background:rgba(0,0,0,.5)}
+  .mobile-collection-body h3{font-family:var(--display);font-size:26px;line-height:1.05;color:#fff;margin:0;letter-spacing:.01em}
   .iconic-section{padding:16px 16px 32px}
   .iconic-section .section-head{margin-bottom:10px}
   .home-cat-header .section-title{display:none}
@@ -396,14 +396,23 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
   /* contact */
   .contact-form{padding:20px}
   .contact-list li{gap:12px}
+  .map-wrap{margin-top:28px;border-radius:10px}
+  .map-wrap iframe{height:200px!important}
   /* modal */
   .modal-grid{grid-template-columns:1fr}
   .modal-img{min-height:200px;padding:16px}
   .modal-info{padding:20px}
   .modal-inner{max-height:92vh;overflow-y:auto}
-  /* footer */
-  .footer-top{grid-template-columns:1fr 1fr;gap:24px}
-  .footer-bottom{justify-content:center;text-align:center;gap:6px}
+  /* footer — compact, stacked, professional */
+  .footer{padding:44px 20px 20px;margin-top:40px}
+  .footer-top{grid-template-columns:1fr;gap:30px;text-align:center}
+  .footer-brand{order:-1}
+  .footer-brand .brand{align-items:center}
+  .footer-brand p{margin:14px auto;max-width:280px}
+  .footer-col h4{font-size:14px;margin-bottom:12px}
+  .footer-col a{font-size:12px}
+  .newsletter form{max-width:300px;margin:0 auto}
+  .footer-bottom{flex-direction:column;justify-content:center;text-align:center;gap:6px;margin-top:32px;padding-top:16px;font-size:9px;letter-spacing:.12em}
   /* hero meta */
   .hero-meta{gap:0;margin-top:32px}
   .hero-eyebrow{margin-bottom:16px}
@@ -891,7 +900,7 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
         <div>
           <h2 class="section-title" style="font-size:clamp(20px,5vw,32px)">Women's <em>Parfums</em></h2>
         </div>
-        <a href="#shop" class="btn btn-ghost home-see-all" onclick="setTimeout(()=>activateShopTab('women'),80)">See All Women <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#shop" class="btn btn-gold home-see-all" onclick="setTimeout(()=>activateShopTab('women'),80)">See All <i class="fa-solid fa-arrow-right"></i></a>
       </div>
     </div>
     <div class="products" id="iconicWomen" data-scrollable="true"></div>
@@ -913,7 +922,7 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
         <div>
           <h2 class="section-title" style="font-size:clamp(20px,5vw,32px)">Men's <em>Parfums</em></h2>
         </div>
-        <a href="#shop" class="btn btn-ghost home-see-all" onclick="setTimeout(()=>activateShopTab('men'),80)">See All Men <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#shop" class="btn btn-gold home-see-all" onclick="setTimeout(()=>activateShopTab('men'),80)">See All <i class="fa-solid fa-arrow-right"></i></a>
       </div>
     </div>
     <div class="products" id="iconicMen" data-scrollable="true"></div>
