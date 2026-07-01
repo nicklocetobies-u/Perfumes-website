@@ -374,15 +374,19 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
   #collections{display:none}
   .products{grid-template-columns:repeat(2,1fr);gap:14px}
   .mobile-collection-banner{
-    display:block;position:relative;aspect-ratio:16/9;overflow:hidden;
+    display:block;position:relative;aspect-ratio:4/3;overflow:hidden;
     border:1px solid var(--line-soft);border-radius:var(--radius);
-    margin-bottom:16px;box-shadow:0 10px 28px -14px rgba(0,0,0,.55);
+    margin-bottom:18px;box-shadow:0 14px 34px -16px rgba(0,0,0,.6);
+    isolation:isolate;
   }
-  .mobile-collection-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.7)}
-  .mobile-collection-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.08) 0%,transparent 38%,rgba(0,0,0,.9) 100%)}
-  .mobile-collection-body{position:absolute;left:18px;right:18px;bottom:16px;z-index:2}
-  .mobile-collection-tag{display:inline-block;font-size:9px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:8px;padding:5px 12px;border:1px solid var(--gold);border-radius:4px;background:rgba(0,0,0,.5)}
-  .mobile-collection-body h3{font-family:var(--display);font-size:26px;line-height:1.05;color:#fff;margin:0;letter-spacing:.01em}
+  .mobile-collection-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 32%;filter:brightness(.72) saturate(1.05);transform:scale(1.04);transition:transform .6s var(--ease)}
+  .mobile-collection-banner:active img{transform:scale(1.1)}
+  .mobile-collection-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 0%,transparent 32%,rgba(0,0,0,.94) 100%)}
+  .mobile-collection-body{position:absolute;left:20px;right:20px;bottom:18px;z-index:2}
+  .mobile-collection-tag{display:inline-block;font-size:9px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;padding:5px 12px;border:1px solid var(--gold);border-radius:4px;background:rgba(0,0,0,.5)}
+  .mobile-collection-body h3{font-family:var(--display);font-size:28px;line-height:1.05;color:#fff;margin:0;letter-spacing:.01em}
+  .mobile-collection-link{display:inline-flex;align-items:center;gap:7px;margin-top:10px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-soft)}
+  .mobile-collection-link i{font-size:9px}
   .iconic-section{padding:16px 16px 32px}
   .iconic-section .section-head{margin-bottom:10px}
   .home-cat-header .section-title{display:none}
@@ -403,16 +407,24 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
   .modal-img{min-height:200px;padding:16px}
   .modal-info{padding:20px}
   .modal-inner{max-height:92vh;overflow-y:auto}
-  /* footer — compact, stacked, professional */
-  .footer{padding:44px 20px 20px;margin-top:40px}
-  .footer-top{grid-template-columns:1fr;gap:30px;text-align:center}
-  .footer-brand{order:-1}
+  /* footer — compact 2-col grid, professional */
+  .footer{padding:36px 20px 18px;margin-top:32px}
+  .footer-top{grid-template-columns:repeat(2,1fr);gap:28px 16px;text-align:left}
+  .footer-brand{
+    grid-column:1/-1;order:-1;text-align:center;
+    padding-bottom:22px;margin-bottom:4px;
+    border-bottom:1px solid var(--line-soft);
+  }
   .footer-brand .brand{align-items:center}
-  .footer-brand p{margin:14px auto;max-width:280px}
-  .footer-col h4{font-size:14px;margin-bottom:12px}
-  .footer-col a{font-size:12px}
-  .newsletter form{max-width:300px;margin:0 auto}
-  .footer-bottom{flex-direction:column;justify-content:center;text-align:center;gap:6px;margin-top:32px;padding-top:16px;font-size:9px;letter-spacing:.12em}
+  .footer-brand p{margin:12px auto 14px;max-width:280px;font-size:12px}
+  .footer-brand .socials{justify-content:center}
+  .footer-col h4{font-size:12px;margin-bottom:10px;letter-spacing:.14em}
+  .footer-col a{font-size:11.5px;margin-bottom:8px}
+  .newsletter{grid-column:1/-1;text-align:center;margin-top:6px;padding-top:20px;border-top:1px solid var(--line-soft)}
+  .newsletter h4{margin-bottom:6px}
+  .newsletter p{margin-bottom:12px}
+  .newsletter form{max-width:320px;margin:0 auto}
+  .footer-bottom{flex-direction:column;justify-content:center;text-align:center;gap:6px;margin-top:24px;padding-top:14px;font-size:9px;letter-spacing:.12em}
   /* hero meta */
   .hero-meta{gap:0;margin-top:32px}
   .hero-eyebrow{margin-bottom:16px}
@@ -711,15 +723,15 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
   .product-actions .btn-cart{font-size:9px;padding:10px 8px;letter-spacing:.1em}
   /* Quick view: small circle icon at bottom-right corner of image — not blocking the photo */
   .products[data-scrollable] .product-quick,
-  .products.products-5 .product-quick{left:auto;right:8px;bottom:8px;width:auto;gap:0}
+  .products.products-5 .product-quick{left:8px;right:8px;bottom:8px;gap:6px}
   .products[data-scrollable] .product-quick button,
   .products.products-5 .product-quick button{
-    flex:none;width:32px;height:32px;min-height:32px;padding:0;
-    border-radius:50%;font-size:0;letter-spacing:0;
-    display:grid;place-items:center;
+    flex:1;padding:9px 6px;font-size:9px;letter-spacing:.08em;
+    border-radius:6px;min-height:32px;
+    display:flex;align-items:center;justify-content:center;gap:5px;
   }
   .products[data-scrollable] .product-quick button i,
-  .products.products-5 .product-quick button i{font-size:12px;margin:0}
+  .products.products-5 .product-quick button i{font-size:10px;margin:0}
   /* — Product modal: bottom sheet — */
   .modal{align-items:flex-end;padding:0}
   .modal-inner{
@@ -888,11 +900,12 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
 <section class="section dark-section no-gap" id="iconic-women">
   <div class="iconic-section">
     <a href="#shop" class="mobile-collection-banner" onclick="setTimeout(()=>activateShopTab('women'),80)">
-      <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=1400&q=80" alt="Women's perfume collection" loading="lazy" />
+      <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&crop=entropy&w=1400&q=80" alt="Women's perfume collection" loading="lazy" />
       <div class="mobile-collection-overlay"></div>
       <div class="mobile-collection-body">
         <span class="mobile-collection-tag">Collection</span>
         <h3>Women's <em>Perfume</em></h3>
+        <span class="mobile-collection-link">Explore <i class="fa-solid fa-arrow-right"></i></span>
       </div>
     </a>
     <div class="section-head reveal">
@@ -910,11 +923,12 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
 <section class="section" id="iconic-men" style="padding-top:0">
   <div class="iconic-section">
     <a href="#shop" class="mobile-collection-banner" onclick="setTimeout(()=>activateShopTab('men'),80)">
-      <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=1400&q=80" alt="Men's perfume collection" loading="lazy" />
+      <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&crop=entropy&w=1400&q=80" alt="Men's perfume collection" loading="lazy" />
       <div class="mobile-collection-overlay"></div>
       <div class="mobile-collection-body">
         <span class="mobile-collection-tag">Collection</span>
         <h3>Men's <em>Perfume</em></h3>
+        <span class="mobile-collection-link">Explore <i class="fa-solid fa-arrow-right"></i></span>
       </div>
     </a>
     <div class="section-head reveal">
