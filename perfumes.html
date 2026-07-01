@@ -572,27 +572,29 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
     gap:10px;
   }
   .products.products-5 .product-media,
-  .products[data-scrollable] .product-media{aspect-ratio:1/1}
+  .products[data-scrollable] .product-media{aspect-ratio:5/4}
   .products.products-5 .product-body,
-  .products[data-scrollable] .product-body{padding:10px 12px 12px}
+  .products[data-scrollable] .product-body{padding:8px 8px 10px}
   .products.products-5 .product-cat,
-  .products[data-scrollable] .product-cat{font-size:9px}
+  .products[data-scrollable] .product-cat{font-size:8px;letter-spacing:.18em;line-height:1;margin-bottom:2px}
   .products.products-5 .product-name,
-  .products[data-scrollable] .product-name{font-size:15px;margin:4px 0 4px}
+  .products[data-scrollable] .product-name{font-size:13px;line-height:1.2;margin:2px 0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .products.products-5 .product-desc,
   .products[data-scrollable] .product-desc{display:none}
   .products.products-5 .product-meta,
-  .products[data-scrollable] .product-meta{margin-bottom:8px}
+  .products[data-scrollable] .product-meta{flex-wrap:nowrap;margin-bottom:6px;gap:4px;align-items:baseline}
   .products.products-5 .product-price,
-  .products[data-scrollable] .product-price{font-size:17px}
+  .products[data-scrollable] .product-price{font-size:14px}
   .products.products-5 .product-rating,
-  .products[data-scrollable] .product-rating{font-size:10px}
+  .products[data-scrollable] .product-rating{font-size:9px;gap:2px;flex-shrink:0}
+  .products.products-5 .product-rating span,
+  .products[data-scrollable] .product-rating span{display:none}
   .products.products-5 .product-actions,
-  .products[data-scrollable] .product-actions{gap:6px}
+  .products[data-scrollable] .product-actions{gap:4px}
   .products.products-5 .btn-cart,
-  .products[data-scrollable] .btn-cart{padding:9px 10px;font-size:9px;min-height:36px}
+  .products[data-scrollable] .btn-cart{padding:6px 6px;font-size:8px;letter-spacing:.1em;min-height:30px}
   .products.products-5 .btn-wa,
-  .products[data-scrollable] .btn-wa{width:36px;min-height:36px;font-size:15px}
+  .products[data-scrollable] .btn-wa{width:30px;min-height:30px;font-size:14px}
 }
 @media (max-width:360px){
   .products.products-5,
