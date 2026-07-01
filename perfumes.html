@@ -651,12 +651,12 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
   .hero-stat{width:auto;padding:14px 8px;border-bottom:1px solid var(--line-soft)}
   .hero-stat-div{display:none}
   .scroll-cue{display:none}
-  /* — Home product rails — */
+  /* — Home product rails — full viewport width, compensates section (16px) + iconic-section (24px) padding — */
   .dark-section .products[data-scrollable],
   .iconic-section .products[data-scrollable]{
-    margin-left:-16px;margin-right:-16px;
-    padding-left:16px;padding-right:16px;
-    width:calc(100% + 32px);
+    margin-left:-40px;margin-right:-40px;
+    padding-left:16px;padding-right:24px;
+    width:calc(100% + 80px);
     scroll-padding-inline:16px;
   }
 
@@ -683,9 +683,19 @@ em{font-style:italic;color:var(--gold);font-family:var(--serif);font-weight:500}
   .shop-cat-see-all{align-self:flex-start;padding:8px 14px;font-size:10px}
   /* — Product cards & quick view — */
   .product:hover{transform:none;box-shadow:none}
-  .product-quick button{font-size:9px;padding:10px;letter-spacing:.12em}
-  .product-actions .btn-cart{font-size:9px;padding:10px 8px;letter-spacing:.1em}
   .product-name{font-size:18px}
+  .product-actions .btn-cart{font-size:9px;padding:10px 8px;letter-spacing:.1em}
+  /* Quick view: small circle icon at bottom-right corner of image — not blocking the photo */
+  .products[data-scrollable] .product-quick,
+  .products.products-5 .product-quick{left:auto;right:8px;bottom:8px;width:auto;gap:0}
+  .products[data-scrollable] .product-quick button,
+  .products.products-5 .product-quick button{
+    flex:none;width:32px;height:32px;min-height:32px;padding:0;
+    border-radius:50%;font-size:0;letter-spacing:0;
+    display:grid;place-items:center;
+  }
+  .products[data-scrollable] .product-quick button i,
+  .products.products-5 .product-quick button i{font-size:12px;margin:0}
   /* — Product modal: bottom sheet — */
   .modal{align-items:flex-end;padding:0}
   .modal-inner{
